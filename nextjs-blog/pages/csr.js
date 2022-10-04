@@ -1,14 +1,14 @@
 import Head from 'next/head'
-import Link from 'next/link'
+import { useEffect, useState } from 'react';
 
-export async function getServerSideProps(){
-  console.log("server")
-  return{
-    props : { time : JSON.stringify(new Date()) }
-  }
-}
+export default function CSR() {
 
-export default function Home({time}) {
+  const [time, setTime] = useState();
+
+  useEffect(()=>{
+    setTime(JSON.stringify(new Date()))
+  },[])
+
   return (
     <div className="container">
       <Head>
@@ -19,18 +19,6 @@ export default function Home({time}) {
       <main>
         <h1 className="title">
           {time}
-        </h1>
-
-        <h1>
-          <Link href="/csr"><a>CSR 로</a></Link>
-        </h1>
-
-        <h1>
-          <Link href="/ssg"><a>SSG 로</a></Link>
-        </h1>
-
-        <h1>
-          <Link href="/isr"><a>ISR 로</a></Link>
         </h1>
 
       </main>
